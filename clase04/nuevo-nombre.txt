@@ -1,0 +1,3 @@
+Esto es un archivo 
+de prueba
+para leer con PHP
