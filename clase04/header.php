@@ -7,6 +7,7 @@
 <?php 
     if (isset($_SESSION['nombre_usuario'])) {
         echo 'Hola ' . $_SESSION['nombre_usuario'] . '!!!';
+        echo '<p><a href="login.php?action=logout">Salir</a></p>';
     }
     
 ?>

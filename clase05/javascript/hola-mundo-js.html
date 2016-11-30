@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Datos del Cliente</h1>
+
+<hr/>
+<label>Nombre:</label>
+<span id="nombre-cliente"></span>
+
+<br/>
+
+<label>Domicilio:</label>
+<span id="domicilio-cliente">*</span>
+
+<div id="datos-cliente"></div>
+
+<script type="text/javascript">
+    var nombre = 'Juan Perez';
+    var domicilio = 'San Martin 350';
+    
+    document.getElementById('nombre-cliente').innerHTML = nombre;
+    document.getElementById('domicilio-cliente').innerHTML = domicilio;
+
+    
+    var datos_cliente = '<div style="border:1px solid">Nombre: ' + nombre + '<br/>Domicilio: ' + domicilio + '</div>';
+    //document.getElementById('datos-cliente').innerHTML = datos_cliente;
+
+</script>
+</body>
+</html>
