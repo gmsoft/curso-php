@@ -1,0 +1,21 @@
+/* Aplicar estilo mediante tag HTML */
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Aplicar estilo mediante tag HTML */
+h3{
+    color:brown;    
+    font-size: 15px;
+}
+
+/* Aplicar estilo mediante definicion de clase */
+.opcion-menu{
+    color: darkgreen; 
+    font-size: 10px;   
+}
+
+/* Aplicar estilo mediante ID de elemento*/
+#mensaje-bienvenida{
+    color:darkslateblue;
+}
