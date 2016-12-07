@@ -26,6 +26,7 @@
             echo '<span class="label label-danger">Error al crear cliente:' . mysqli_error($cn) . '</span>';
         }
     }
+    
     /*
     echo '<pre>';
     print_r($_POST);
