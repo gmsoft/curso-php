@@ -11,12 +11,14 @@
         <link rel="stylesheet" type="text/css" href="css/estilos.css" />
     </head>
 <body>    
-    <h3>Sistema de Gestion</h3>
-    <hr/>    
+   
 <?php
+    require_once('database.php');
 
     if (isset($_SESSION['username'])) {//Si estoy logueado al sistema, mostrar el menu
         require_once('menu.php');
+    } else {
+        echo '<h3>Ingreso al sistema</h3>';
     }
     
 ?>

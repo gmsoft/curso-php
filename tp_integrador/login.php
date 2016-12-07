@@ -17,13 +17,26 @@ if ( isset( $_POST["login"] ) ) {
 
 function login() {
   if ( isset( $_POST["username"] ) and isset( $_POST["password"] ) ) {
-    if ( $_POST["username"] == USERNAME and $_POST["password"] == PASSWORD ) {
-      $_SESSION["username"] = USERNAME;
-      session_write_close();
-      header( "Location: menu.php" );
+    //Valores que el usuario carga mediante el formulario
+    $email = $_POST["email"];//Es el input del email
+    $password = $_POST["password"];//Es el input de la clave
+    $cn = getConnection();
+    //Consulta a la base de datos
+    $sql = "SELECT id, nombre, email FROM usuarios WHERE email = '$email' AND password = '$password'"; 
+    $result_usuarios = mysqli_query($cn, $sql);//Ejecución de la consulta
+    if ($result_usuarios) {
+      $rows_usuarios = mysqli_num_rows($result_usuarios);
+      if ($rows_usuarios == 0) {
+        displayLoginForm( "Usuario y clave inexistente" );
+      } else {
+         $_SESSION["username"] = $email;
+         session_write_close();
+         closeConnection($cn);
+         header( "Location: menu.php" );
+      }
     } else {
-      displayLoginForm( "Usuario y clave no valido. Intente nuevamente" );
-    }
+       displayLoginForm( "Error en la consulta:" . mysqli_error($cn) );
+    } 
   }
 }
 
@@ -42,19 +55,23 @@ function displayPage() {
 
 function displayLoginForm( $message="" ) {  
 ?>
-    <?php if ( $message ) echo '<p class="error">' . $message . '</p>' ?>
+    <form action="login.php" method="post" class="form-inline">
+       
+       <div class="form-group">
+        <label for="username">E-mail</label>
+        <input class="form-control"  type="email" name="email" id="username" value="" />
+       </div>
 
-    <form action="login.php" method="post">
-      <div style="width: 30em;">
-        <label for="username">Usuario</label>
-        <input type="text" name="username" id="username" value="" />
-        <label for="password">Clave</label>
-        <input type="password" name="password" id="password" value="" />
-        <div style="clear: both;">
-          <input type="submit" name="login" value="Ingresar" />
-        </div>
-      </div>
+       <div class="form-group">
+          <label for="password">Clave</label>
+          <input class="form-control" type="password" name="password" id="password" value="" />
+       </div>
+      
+      <input class="btn btn-success" type="submit" name="login" value="Ingresar" />
+        
     </form>  
+
+    <?php if ( $message ) echo '<div><span class="label label-danger">' . $message . '</span></div>' ?>
 <?php
 }
 
