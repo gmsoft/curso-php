@@ -16,7 +16,7 @@ if ( isset( $_POST["login"] ) ) {
 }
 
 function login() {
-  if ( isset( $_POST["username"] ) and isset( $_POST["password"] ) ) {
+  if ( isset( $_POST["email"] ) and isset( $_POST["password"] ) ) {
     //Valores que el usuario carga mediante el formulario
     $email = $_POST["email"];//Es el input del email
     $password = $_POST["password"];//Es el input de la clave
